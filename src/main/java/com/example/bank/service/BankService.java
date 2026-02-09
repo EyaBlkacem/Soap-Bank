@@ -45,4 +45,28 @@ public class BankService {
     acc.balance = acc.balance.add(amount);
     return acc.balance;
   }
+   public BigDecimal withdraw(String accountId, BigDecimal amount) {
+        Account acc = getAccount(accountId);
+        if (acc == null) throw new UnknownAccountException("Account not found");
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Amount must be positive");
+        if (acc.balance.compareTo(amount) < 0) throw new IllegalArgumentException("Insufficient funds");
+
+        acc.balance = acc.balance.subtract(amount);
+        return acc.balance;
+    }
+    public BigDecimal[] transfer(String fromAccountId, String toAccountId, BigDecimal amount) {
+    Account from = getAccount(fromAccountId);
+    Account to   = getAccount(toAccountId);
+
+    if (from == null) throw new UnknownAccountException("Source account not found");
+    if (to == null) throw new UnknownAccountException("Destination account not found");
+    if (amount.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Amount must be positive");
+    if (from.balance.compareTo(amount) < 0) throw new IllegalArgumentException("Insufficient funds");
+
+    from.balance = from.balance.subtract(amount);
+    to.balance = to.balance.add(amount);
+
+    return new BigDecimal[]{from.balance, to.balance};
+}
+
 }

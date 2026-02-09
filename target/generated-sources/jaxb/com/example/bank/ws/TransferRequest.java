@@ -26,7 +26,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="fromAccountId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="toAccountId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="amount" type="{http://www.w3.org/2001/XMLSchema}decimal"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -38,39 +39,66 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "accountId",
+    "fromAccountId",
+    "toAccountId",
     "amount"
 })
-@XmlRootElement(name = "DepositRequest")
-public class DepositRequest {
+@XmlRootElement(name = "TransferRequest")
+public class TransferRequest {
 
     @XmlElement(required = true)
-    protected String accountId;
+    protected String fromAccountId;
+    @XmlElement(required = true)
+    protected String toAccountId;
     @XmlElement(required = true)
     protected BigDecimal amount;
 
     /**
-     * Obtient la valeur de la propriété accountId.
+     * Obtient la valeur de la propriété fromAccountId.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAccountId() {
-        return accountId;
+    public String getFromAccountId() {
+        return fromAccountId;
     }
 
     /**
-     * Définit la valeur de la propriété accountId.
+     * Définit la valeur de la propriété fromAccountId.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAccountId(String value) {
-        this.accountId = value;
+    public void setFromAccountId(String value) {
+        this.fromAccountId = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété toAccountId.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getToAccountId() {
+        return toAccountId;
+    }
+
+    /**
+     * Définit la valeur de la propriété toAccountId.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setToAccountId(String value) {
+        this.toAccountId = value;
     }
 
     /**

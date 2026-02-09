@@ -41,8 +41,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "accountId",
     "amount"
 })
-@XmlRootElement(name = "DepositRequest")
-public class DepositRequest {
+@XmlRootElement(name = "WithdrawRequest")
+public class WithdrawRequest {
 
     @XmlElement(required = true)
     protected String accountId;
